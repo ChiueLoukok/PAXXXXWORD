@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>PAXXXXWORD</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="text-medium">
+
+    <!-- 游戏顶部 -->
+    <header>
+    	<h1>PAXXXXWORD</h1>
+    	<p>Guess the hidden four-symbol password.</p>
+    	<p>◆ Exact match　◇ Right symbol, wrong position</p>
+	<button id="settings-button">SETTINGS</button>
+
+	<button id="new-game-button">NEW GAME</button>
+
+    </header>
+
+
+
+<div id="settings-panel" class="settings-panel hidden">
+
+    <div class="settings-card">
+
+        <div class="settings-header">
+            <h2>SETTINGS</h2>
+            <button id="close-settings">×</button>
+        </div>
+
+        <div class="settings-section">
+    	    <h3>APPEARANCE</h3>
+
+    	    <div class="appearance-row">
+        	<input type="color" class="color-setting"
+               		data-symbol="alpha" value="#f3620f">
+
+        	<input type="text" class="symbol-setting"
+              	 	data-symbol="alpha" value="α" maxlength="2">
+   	    </div>
+
+    	    <div class="appearance-row">
+        	<input type="color" class="color-setting"
+               		data-symbol="beta" value="#ffc20a">
+
+        	<input type="text" class="symbol-setting"
+               		data-symbol="beta" value="β" maxlength="2">
+    	    </div>
+
+    	    <div class="appearance-row">
+        	<input type="color" class="color-setting"
+               		data-symbol="mu" value="#67944b">
+
+        	<input type="text" class="symbol-setting"
+               		data-symbol="mu" value="μ" maxlength="2">
+    	    </div>
+
+    	    <div class="appearance-row">
+        	<input type="color" class="color-setting"
+               		data-symbol="pi" value="#078d8c">
+
+        	<input type="text" class="symbol-setting"
+               		data-symbol="pi" value="π" maxlength="2">
+    	    </div>
+
+    	    <div class="appearance-row">
+        	<input type="color" class="color-setting"
+               		data-symbol="phi" value="#dfd1b7">
+
+        	<input type="text" class="symbol-setting"
+               		data-symbol="phi" value="φ" maxlength="2">
+    	    </div>
+
+    	    <div class="appearance-row">
+        	<input type="color" class="color-setting"
+               		data-symbol="omega" value="#da0d1e">
+
+        	<input type="text" class="symbol-setting"
+               		data-symbol="omega" value="ω" maxlength="2">
+    	    </div>
+	</div>
+
+        <div class="settings-section">
+    	    <h3>TEXT SIZE</h3>
+
+    	    <div class="text-size-picker">
+        	<button class="text-size-option" data-size="small">SMALL</button>
+        	<button class="text-size-option active" data-size="medium">MEDIUM</button>
+        	<button class="text-size-option" data-size="large">LARGE</button>
+    	    </div>
+	</div>
+
+        <div class="settings-section">
+    	    <h3>DIFFICULTY</h3>
+
+    	    <div class="game-setting-row">
+        	<span>ATTEMPTS</span>
+
+            	<div class="difficulty-picker">
+            		<button class="difficulty active" data-attempts="4">4</button>
+            		<button class="difficulty" data-attempts="6">6</button>
+            		<button class="difficulty" data-attempts="8">8</button>
+            	</div>
+    	    </div>
+	</div>
+
+    </div>
+
+</div>
+
+
+<div id="end-screen" class="end-screen hidden">
+
+    <div class="end-card">
+
+        <h2 id="end-title"></h2>
+
+        <p id="end-detail"></p>
+
+        <button id="play-again-button">
+            PLAY AGAIN
+        </button>
+
+    </div>
+
+</div>
+
+
+
+    <!-- 游戏棋盘 -->
+    <main>
+
+        <div class="game-board">
+
+            
+    	    <div id="attempts">
+    	    </div>
+
+            <!-- 隐藏答案 -->
+            <div class="secret-column">
+                    <div class="password-logo">
+        		<div>PA</div>
+        		<div>XX</div>
+        		<div>XX</div>
+        		<div>WORD</div>
+    		    </div>
+
+    		<div class="secret-hints"></div>
+
+                <div class="slots">
+                    <div class="secret-slot">×</div>
+                    <div class="secret-slot">×</div>
+                    <div class="secret-slot">×</div>
+                    <div class="secret-slot">×</div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- 底部颜色选择区 -->
+    <footer>
+
+        <p>CHOOSE A SYMBOL</p>
+
+        <div class="color-picker">
+    		<button class="alpha">α</button>
+    		<button class="beta">β</button>
+    		<button class="mu">μ</button>
+    		<button class="pi">π</button>
+    		<button class="phi">φ</button>
+    		<button class="omega">ω</button>
+	</div>
+
+        <button id="verify-button">VERIFY</button>
+	<p id="game-message"></p>
+	
+
+    </footer>
+
+
+
+<script src="game.js"></script>
+</body>
+</html>
+
+
+
+
+
