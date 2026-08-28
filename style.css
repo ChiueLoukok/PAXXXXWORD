@@ -1,0 +1,814 @@
+:root {
+    --alpha-color: #f3620f;
+    --beta-color: #ffc20a;
+    --mu-color: #67944b;
+    --pi-color: #078d8c;
+    --phi-color: #dfd1b7;
+    --omega-color: #da0d1e;
+}
+
+
+body {
+    margin: 0;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7f7f5;
+    color: #111;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 42px;
+    letter-spacing: 6px;
+    margin-bottom: 12px;
+}
+
+header p {
+    margin: 6px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+
+/* 整个棋盘横向排列 */
+
+.game-board {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    margin: 22px auto 32px;
+}
+
+/* Password 栏 */
+
+.secret-column{
+
+    width:90px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+
+
+/* 每一次尝试 */
+
+.attempt,
+.secret {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+}
+
+.attempt h2,
+.secret h2 {
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 2px;
+
+    margin: 0 0 18px 0;
+
+    color: #555;
+}
+
+/* 2 × 2 提示灯 */
+
+.hints {
+    display: grid;
+    grid-template-columns: repeat(2, 16px);
+    grid-template-rows: repeat(2, 16px);
+    gap: 6px;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.hints span {
+    font-size: 16px;
+    line-height: 16px;
+}
+
+
+/* 四个纵向格子 */
+.slot,
+.secret-slot {
+    box-sizing: border-box;
+}
+
+
+.slots {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* 玩家格子 */
+
+.slot {
+    width: 58px;
+    height: 58px;
+
+    border: 2px solid #c8c8c8;
+    border-radius: 12px;
+
+    background-color: white;
+
+    font-size: 24px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.slot:hover {
+    border-color: #777;
+}
+
+
+/* Secret 格子 */
+
+.secret-slot {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #111;
+    border-radius: 12px;
+
+    background-color: white;
+    color: #111;
+
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+/* 底部 */
+
+footer {
+    margin-top: 12px;
+}
+
+footer > p {
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+
+/* 六个符号 */
+
+.color-picker {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+
+    margin-bottom: 25px;
+}
+
+.color-picker button {
+    width: 52px;
+    height: 52px;
+
+    border: 2px solid #222;
+    border-radius: 50%;
+
+    background-color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.color-picker button:hover {
+    transform: translateY(-3px);
+}
+
+
+/* VERIFY */
+
+footer > button {
+    padding: 13px 34px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #111;
+    color: white;
+
+    font-size: 13px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+}
+
+footer > button:hover {
+    opacity: 0.8;
+}
+
+
+
+
+
+.secret-spacer {
+
+    height: 32px;
+
+    margin-bottom: 22px;
+
+}
+
+
+
+
+/* 颜色(选项） */
+
+.color-picker .alpha {
+    background-color: var(--alpha-color);
+}
+
+.color-picker .beta {
+    background-color: var(--beta-color);
+}
+
+.color-picker .mu {
+    background-color: var(--mu-color);
+}
+
+.color-picker .pi {
+    background-color: var(--pi-color);
+}
+
+.color-picker .phi {
+    background-color: var(--phi-color);
+}
+
+.color-picker .omega {
+    background-color: var(--omega-color);
+}
+
+
+
+
+
+/* 颜色（选择框） */
+.slot.selected {
+
+    border-color: #111;
+
+    transform: scale(1.05);
+
+}
+
+
+
+/* 颜色（格子） */
+
+.slot.alpha {
+    background-color: var(--alpha-color);
+}
+
+.slot.beta {
+    background-color: var(--beta-color);
+}
+
+.slot.mu {
+    background-color: var(--mu-color);
+}
+
+.slot.pi {
+    background-color: var(--pi-color);
+}
+
+.slot.phi {
+    background-color: var(--phi-color);
+}
+
+.slot.omega {
+    background-color: var(--omega-color);
+}
+
+
+
+/* 后续列变淡 */
+
+.attempt.completed {
+    opacity: 1;
+}
+
+.attempt.active {
+    opacity: 1;
+}
+
+.attempt.locked {
+    opacity: 0.35;
+}
+
+
+
+/* 颜色（答案） */
+.secret-slot.alpha {
+    background-color: var(--alpha-color);
+}
+
+.secret-slot.beta {
+    background-color: var(--beta-color);
+}
+
+.secret-slot.mu {
+    background-color: var(--mu-color);
+}
+
+.secret-slot.pi {
+    background-color: var(--pi-color);
+}
+
+.secret-slot.phi {
+    background-color: var(--phi-color);
+}
+
+.secret-slot.omega {
+    background-color: var(--omega-color);
+}
+
+
+
+/* 预留空间 */
+#game-message {
+    min-height: 24px;
+    margin-top: 16px;
+
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    color: #555;
+}
+
+
+
+
+/* 难度样式 */
+.difficulty-picker {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.difficulty {
+    width: 42px;
+    height: 34px;
+
+    border: 1.5px solid #999;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #555;
+
+    cursor: pointer;
+}
+
+.difficulty.active {
+    background-color: #111;
+    color: white;
+    border-color: #111;
+}
+
+
+
+/* 新游戏按钮 */
+#new-game-button {
+    margin-top: 14px;
+    padding: 9px 18px;
+
+    border: 1.5px solid #111;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #111;
+
+    font-size: 12px;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+}
+
+#new-game-button:hover {
+    background-color: #111;
+    color: white;
+}
+
+
+
+
+
+#settings-button {
+    margin-top: 16px;
+    padding: 8px 16px;
+
+    border: 1.5px solid #111;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #111;
+
+    font-size: 11px;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+}
+
+#settings-button:hover {
+    background-color: #111;
+    color: white;
+}
+
+
+/* 设置面板背景 */
+
+.settings-panel {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    z-index: 1000;
+}
+
+
+/* 隐藏状态 */
+
+.settings-panel.hidden {
+    display: none;
+}
+
+
+/* 设置卡片 */
+
+.settings-card {
+    width: 420px;
+    max-width: 80%;
+
+    padding: 28px;
+
+    background-color: #f7f7f5;
+
+    border: 2px solid #111;
+    border-radius: 16px;
+
+    text-align: left;
+}
+
+
+/* 设置顶部 */
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.settings-header h2 {
+    margin: 0;
+
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
+#close-settings {
+    border: none;
+    background: none;
+
+    font-size: 26px;
+
+    cursor: pointer;
+}
+
+
+/* 设置分区 */
+
+.settings-section {
+    padding: 20px 0;
+
+    border-top: 1px solid #ccc;
+}
+
+.settings-section h3 {
+    margin: 0 0 10px;
+
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.settings-section p {
+    margin: 0;
+
+    font-size: 13px;
+    color: #666;
+}
+
+
+
+.appearance-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 12px;
+}
+
+
+
+/* 颜色设置 */
+.color-setting {
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border: 1px solid #aaa;
+    border-radius: 8px;
+
+    background: none;
+
+    cursor: pointer;
+}
+
+
+
+/* 符号设置 */
+.symbol-setting {
+    width: 60px;
+    height: 38px;
+
+    border: 1px solid #aaa;
+    border-radius: 8px;
+
+    background-color: white;
+
+    text-align: center;
+
+    font-size: 20px;
+}
+
+
+
+/* 字号设置 */
+.text-size-picker {
+    display: flex;
+    gap: 10px;
+}
+
+.text-size-option {
+    padding: 8px 12px;
+
+    border: 1.5px solid #aaa;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #555;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+.text-size-option.active {
+    background-color: #111;
+    color: white;
+    border-color: #111;
+}
+
+body.text-small {
+    font-size: 14px;
+}
+
+body.text-medium {
+    font-size: 16px;
+}
+
+body.text-large {
+    font-size: 18px;
+}
+
+body.text-small .slot,
+body.text-small .secret-slot,
+body.text-small .color-picker button {
+    font-size: 20px;
+}
+
+body.text-medium .slot,
+body.text-medium .secret-slot,
+body.text-medium .color-picker button {
+    font-size: 26px;
+}
+
+body.text-large .slot,
+body.text-large .secret-slot,
+body.text-large .color-picker button {
+    font-size: 32px;
+}
+
+
+
+/* 难度设置 */
+.game-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.game-setting-row > span {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #555;
+}
+
+.game-setting-row .difficulty-picker {
+    margin-top: 0;
+}
+
+
+
+
+/* 游戏结束提示 */
+
+.end-screen {
+    display: flex;
+    justify-content: center;
+
+    margin: 14px auto 0;
+}
+
+.end-screen.hidden {
+    display: none;
+}
+
+
+/* 结束提示卡片 */
+
+.end-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+
+    padding: 12px 20px;
+
+    background-color: white;
+
+    border: 1.5px solid #111;
+    border-radius: 12px;
+
+    animation: endCardAppear 0.3s ease;
+}
+
+.end-card h2 {
+    margin: 0;
+
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.end-card p {
+    margin: 0;
+
+    font-size: 12px;
+    letter-spacing: 1.5px;
+
+    color: #555;
+}
+
+#play-again-button {
+    padding: 8px 14px;
+
+    border: 1.5px solid #111;
+    border-radius: 7px;
+
+    background-color: white;
+    color: #111;
+
+    font-size: 10px;
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+}
+
+#play-again-button:hover {
+    background-color: #111;
+    color: white;
+}
+
+@keyframes endCardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* 结算动画 */
+.symbol-confetti {
+    position: fixed;
+
+    width: 12px;
+    height: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid #111;
+
+    font-size: 9px;
+    font-weight: 500;
+    color: #111;
+
+    pointer-events: none;
+
+    z-index: 1200;
+
+    
+}
+
+
+/* 六种 confetti 颜色 */
+
+.symbol-confetti.alpha {
+    background-color: var(--alpha-color);
+}
+
+.symbol-confetti.beta {
+    background-color: var(--beta-color);
+}
+
+.symbol-confetti.mu {
+    background-color: var(--mu-color);
+}
+
+.symbol-confetti.pi {
+    background-color: var(--pi-color);
+}
+
+.symbol-confetti.phi {
+    background-color: var(--phi-color);
+}
+
+.symbol-confetti.omega {
+    background-color: var(--omega-color);
+}
+
+
+
+
+/* Password Logo */
+
+.password-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 55px;
+}
+
+.secret-hints {
+    height: 40px;
+}
